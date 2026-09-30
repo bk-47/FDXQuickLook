@@ -1,0 +1,34 @@
+name: FDXQuickLook
+options:
+  bundleIdPrefix: com.bk
+  deploymentTarget:
+    macOS: "13.0"
+settings:
+  base:
+    CODE_SIGN_STYLE: Manual
+    CODE_SIGN_IDENTITY: "-"
+    SWIFT_VERSION: "5.0"
+targets:
+  FDXQuickLook:
+    type: application
+    platform: macOS
+    sources: [FDXQuickLook]
+    settings:
+      base:
+        INFOPLIST_FILE: FDXQuickLook/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        PRODUCT_BUNDLE_IDENTIFIER: com.bk.FDXQuickLook
+    dependencies:
+      - target: FDXPreview
+        embed: true
+  FDXPreview:
+    type: app-extension
+    platform: macOS
+    sources: [FDXPreview]
+    entitlements:
+      path: FDXPreview/FDXPreview.entitlements
+    settings:
+      base:
+        INFOPLIST_FILE: FDXPreview/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        PRODUCT_BUNDLE_IDENTIFIER: com.bk.FDXQuickLook.FDXPreview
